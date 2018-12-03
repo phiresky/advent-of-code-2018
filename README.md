@@ -1,4 +1,27 @@
 Paste these solutions directly into the dev console (ctrl+shift+i) at the input website (e.g. https://adventofcode.com/2018/day/3/input )
+
+# Day 1
+
+```js
+eval(document.body.textContent)
+```
+## Part 2
+
+```js
+set = new Set();
+document.body.textContent
+  .repeat(1000)
+  .trim()
+  .split("\n")
+  .map(x => +x)
+  .reduce((sum, b) => {
+    if (set.has(sum)) throw sum;
+    set.add(sum);
+    return sum + b;
+  });
+```
+
+
 # Day 3
 
 ## Part 1
