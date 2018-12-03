@@ -1,3 +1,4 @@
+Paste these solutions directly into the dev console (ctrl+shift+i) at the input website (e.g. https://adventofcode.com/2018/day/3/input )
 # Day 3
 
 ## Part 1
