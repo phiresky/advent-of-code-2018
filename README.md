@@ -101,10 +101,9 @@ for (p of document.body.textContent
 min = sleepytime[sleepyid].indexOf(
   Math.max(...sleepytime[sleepyid].filter(p => p))
 );
-console.log(sleepyid * min)[
-  // part 2
-  (mostsle, max, min)
-] = Object.entries(sleepytime)
+console.log(sleepyid * min);
+// part 2
+[mostsle, max, min] = Object.entries(sleepytime)
   .map(([gid, mins]) => {
     x = Math.max(...mins.filter(p => p));
     return [gid, x, mins.indexOf(x)];
