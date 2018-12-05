@@ -76,3 +76,25 @@ for (const { id, count } of candidates) {
   if (hasc === count) throw id;
 }
 ```
+
+# Day 4
+
+```js
+sleepysum = {}
+sleepytime = {}
+guard = 0
+for(p of document.body.textContent.trim().split("\n").sort()) { 
+  [_, minute, tag, gid ] = p.match(/:(..)\] (.)(?:uard #(\d+))?/)
+  if (gid) guard = gid;
+  if (tag == 'f') start = +minute
+  if (tag == 'w') {
+    end = +minute
+    sleepysum[guard] = (sleepysum[guard]||0) + (end - start)
+    tgt = sleepytime[guard] || (sleepytime[guard] = [])
+    for(let i = start; i < end; i++) tgt[i] = (tgt[i]||0) + 1
+  }
+}
+[sleepyid] = Object.entries(sleepysum).sort((a,b) => b[1] - a[1])[0]
+min = sleepytime[sleepyid].indexOf(Math.max(...sleepytime[sleepyid].filter(p=>p)))
+console.log(sleepyid * min)
+```
