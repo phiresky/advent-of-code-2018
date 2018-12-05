@@ -106,9 +106,17 @@ console.log(mostsle, min)
 # Day 5
 
 ```js
+collapse = txt => {
 r = Array(26).fill(0).map((_,i) => String.fromCharCode('a'.charCodeAt(0) + i)).map(c => c + c.toUpperCase()).map(x => [x, x.split('').reverse().join('')]).flat().join("|")
 r = RegExp(r, "g")
-b = c = document.body.textContent.trim()
+b = c = txt
 do { b = c; c = b.replace(r, "") } while(c.length != b.length)
-console.log(c.length)
+return c.length
+}
+console.log(collapse(document.body.textContent.trim()))
+
+
+// part 2
+orig = document.body.textContent.trim()
+Math.min(...Array(26).fill(0).map((_,i) => String.fromCharCode('a'.charCodeAt(0) + i)).map(c => collapse(orig.replace(RegExp(c, "gi"), ""))))
 ```
