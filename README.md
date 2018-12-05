@@ -97,4 +97,8 @@ for(p of document.body.textContent.trim().split("\n").sort()) {
 [sleepyid] = Object.entries(sleepysum).sort((a,b) => b[1] - a[1])[0]
 min = sleepytime[sleepyid].indexOf(Math.max(...sleepytime[sleepyid].filter(p=>p)))
 console.log(sleepyid * min)
+
+// part 2
+[mostsle, max, min] = Object.entries(sleepytime).map(([gid, mins]) => {x = Math.max(...mins.filter(p=>p)); return [gid, x, mins.indexOf(x)]}).sort((a,b) => b[1] - a[1])[0]
+console.log(mostsle, min)
 ```
