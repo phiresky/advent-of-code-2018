@@ -102,3 +102,13 @@ console.log(sleepyid * min)
 [mostsle, max, min] = Object.entries(sleepytime).map(([gid, mins]) => {x = Math.max(...mins.filter(p=>p)); return [gid, x, mins.indexOf(x)]}).sort((a,b) => b[1] - a[1])[0]
 console.log(mostsle, min)
 ```
+
+# Day 5
+
+```js
+r = Array(26).fill(0).map((_,i) => String.fromCharCode('a'.charCodeAt(0) + i)).map(c => c + c.toUpperCase()).map(x => [x, x.split('').reverse().join('')]).flat().join("|")
+r = RegExp(r, "g")
+b = c = document.body.textContent.trim()
+do { b = c; c = b.replace(r, "") } while(c.length != b.length)
+console.log(c.length)
+```
