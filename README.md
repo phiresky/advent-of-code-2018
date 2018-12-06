@@ -148,3 +148,46 @@ Math.min(
     .map(c => collapse(orig.replace(RegExp(c, "gi"), "")))
 );
 ```
+
+# Day 6
+
+```js
+inp = document.body.textContent
+  .trim()
+  .split("\n")
+  .map(x => x.split(", ").map(p => +p))
+  .map(([x, y], i) => ({ i, x, y }));
+// a = Array.from({length:1000}, _ => Array.from({length:1000}, _ => 0))
+m = inp.map(_ => 0);
+nearest = (cx, cy) =>
+  inp.reduce(
+    ({ best, dist }, { x, y }, aft) => {
+      ndist = Math.abs(cx - x) + Math.abs(cy - y);
+      if (ndist == dist) return { best: -1, dist };
+      if (ndist < dist) return { best: aft, dist: ndist };
+      else return { best, dist };
+    },
+    { best: -1, dist: Infinity }
+  ).best;
+
+for (let x = 0; x < 1000; x++) {
+  for (let y = 0; y < 1000; y++) {
+    let n = nearest(x, y);
+    if (n >= 0) m[n]++;
+    if (x == 0 || y == 0 || x == 999 || y == 999) m[n] -= 1e6;
+  }
+}
+console.log(Math.max(...m));
+
+n2 = 0;
+for (let x = 0; x < 1000; x++) {
+  for (let y = 0; y < 1000; y++) {
+    total = inp.reduce(
+      (sum, { x: cx, y: cy }) => sum + Math.abs(cx - x) + Math.abs(cy - y),
+      0
+    );
+    if (total < 1e4) n2++;
+  }
+}
+console.log(n2);
+```
